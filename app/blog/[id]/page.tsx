@@ -33,11 +33,7 @@ import {
   PencilEdit01Icon,
 } from "@hugeicons/core-free-icons";
 
-export default function BlogPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function BlogPage({ params, }: { params: Promise<{ id: string }>; }) {
   const { id } = use(params);
   const blogId = id as Id<"blogs">;
   const router = useRouter();
@@ -72,7 +68,7 @@ export default function BlogPage({
           <p className="mt-1 text-sm text-muted-foreground">
             它可能已被删除,或者作者设为了私密。
           </p>
-            <Link href="/">返回首页</Link>
+          <Link href="/">返回首页</Link>
         </div>
       </div>
     );
@@ -91,7 +87,7 @@ export default function BlogPage({
           {isOwner && (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                  <HugeiconsIcon icon={MoreHorizontalIcon} size={18} />
+                <HugeiconsIcon icon={MoreHorizontalIcon} size={18} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>

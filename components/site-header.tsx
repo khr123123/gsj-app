@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useQuery } from "convex/react";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { api } from "@/convex/_generated/api";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -42,57 +40,50 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <OnlineBadge />
-
           {!isLoading && isAuthenticated && user ? (
             <>
-              <Button  size="sm" className="hidden sm:inline-flex">
+              <Button size="sm" className="hidden sm:inline-flex">
                 <Link href="/write">写博客</Link>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger >
-                    <Avatar className="h-9 w-9 border border-border/60">
-                      <AvatarImage src={user.avatarUrl} alt={user.displayName} />
-                      <AvatarFallback>
-                        {initials(user.displayName)}
-                      </AvatarFallback>
-                    </Avatar>
+                  <Avatar className="h-9 w-9 border border-border/60">
+                    <AvatarImage src={user.avatarUrl} alt={user.displayName} />
+                    <AvatarFallback>
+                      {initials(user.displayName)}
+                    </AvatarFallback>
+                  </Avatar>
                 </DropdownMenuTrigger>
-         <DropdownMenuContent align="end" className="w-52">
-  <DropdownMenuGroup>
-    <DropdownMenuLabel className="truncate">
-      {user.displayName}
-    </DropdownMenuLabel>
-  </DropdownMenuGroup>
-
-  <DropdownMenuSeparator />
-
-  <DropdownMenuItem onClick={() => router.push(`/u/${user._id}`)}>
-    我的主页
-  </DropdownMenuItem>
-
-  <DropdownMenuItem onClick={() => router.push("/write")}>
-    写博客
-  </DropdownMenuItem>
-
-  <DropdownMenuItem onClick={() => router.push("/settings")}>
-    个人设置
-  </DropdownMenuItem>
-
-  <DropdownMenuSeparator />
-
-  <DropdownMenuItem
-    onClick={async () => {
-      await signOut();
-      router.push("/");
-    }}
-  >
-    退出登录
-  </DropdownMenuItem>
-</DropdownMenuContent>
+                <DropdownMenuContent align="end" className="w-52">
+                  <DropdownMenuGroup>
+                    <DropdownMenuLabel className="truncate">
+                      {user.displayName}
+                    </DropdownMenuLabel>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => router.push(`/u/${user._id}`)}>
+                    我的主页
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push("/write")}>
+                    写博客
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push("/settings")}>
+                    个人设置
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={async () => {
+                      await signOut();
+                      router.push("/");
+                    }}
+                  >
+                    退出登录
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
               </DropdownMenu>
             </>
           ) : (
-            <Button  size="sm">
+            <Button size="sm">
               <Link href="/signin">登录 / 注册</Link>
             </Button>
           )}

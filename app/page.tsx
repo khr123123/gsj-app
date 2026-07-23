@@ -16,18 +16,17 @@ export default function HomePage() {
   const { isAuthenticated } = useCurrentUser();
   const authors = blogs
     ? Array.from(
-        new Map(
-          blogs
-            .filter((b) => b.author)
-            .map((b) => [b.author!._id, b.author!])
-        ).values()
-      ).slice(0, 8)
+      new Map(
+        blogs
+          .filter((b) => b.author)
+          .map((b) => [b.author!._id, b.author!])
+      ).values()
+    ).slice(0, 8)
     : [];
 
   return (
     <div className="min-h-svh bg-background">
       <SiteHeader />
-
       {/* Hero */}
       <section className="border-b border-border/60 bg-gradient-to-b from-muted/40 to-transparent">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
@@ -44,7 +43,7 @@ export default function HomePage() {
           </p>
           {!isAuthenticated && (
             <div className="mt-5 flex gap-3">
-                <Link href="/signin">开始写作</Link>
+              <Link href="/signin">开始写作</Link>
             </div>
           )}
         </div>
@@ -123,7 +122,7 @@ function EmptyState() {
       <p className="mt-1 max-w-xs text-sm text-muted-foreground">
         成为第一个在这里留下故事的人吧。
       </p>
-        <Link href="/write">写第一篇博客</Link>
+      <Link href="/write">写第一篇博客</Link>
     </div>
   );
 }
