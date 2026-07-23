@@ -7,7 +7,6 @@ import { SiteHeader } from "@/components/site-header";
 import { Timeline } from "@/components/timeline";
 import { Viewers } from "@/components/viewers";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { initials } from "@/lib/format";
 import { useCurrentUser } from "@/hooks/use-current-user";
@@ -15,8 +14,6 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 export default function HomePage() {
   const blogs = useQuery(api.blogs.timeline);
   const { isAuthenticated } = useCurrentUser();
-
-  // Build a list of unique recent authors for the sidebar.
   const authors = blogs
     ? Array.from(
         new Map(

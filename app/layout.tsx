@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className="font-sans">
         <ConvexClientProvider>
           <ThemeProvider>
-            <TooltipProvider delayDuration={200}>
+            <TooltipProvider >
               {children}
               <Toaster richColors position="top-center" />
             </TooltipProvider>
